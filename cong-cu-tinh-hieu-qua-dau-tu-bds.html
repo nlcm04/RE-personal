@@ -181,7 +181,7 @@ footer{color:var(--muted);font-size:12.5px;text-align:center;padding:10px 16px 2
   <div class="wrap">
     <div>
       <h1>Công cụ tính hiệu quả đầu tư bất động sản</h1>
-      <p>Trả lời câu hỏi: <b>“Nếu bán ở tháng thứ mấy thì lời bao nhiêu, có hơn gửi ngân hàng không?”</b> — Thay đổi các giả định bên dưới, kết quả sẽ tự cập nhật ngay.</p>
+      <p>Trả lời câu hỏi: <b>“Nếu bán ở tháng thứ mấy thì lời bao nhiêu, có hơn gửi ngân hàng không?”</b> — Nhập giả định ở phần 1, kết quả ở phần 2 sẽ tự cập nhật ngay.</p>
     </div>
     <button class="btn btn-light" id="btnResetTop" type="button">↺ Khôi phục giá trị mặc định</button>
   </div>
@@ -189,53 +189,10 @@ footer{color:var(--muted);font-size:12.5px;text-align:center;padding:10px 16px 2
 
 <main class="wrap">
 
-  <!-- ========== 1. KẾT QUẢ ========== -->
-  <section class="block" id="secResult">
-    <div class="sec-head">
-      <h2><span class="sec-num">1</span> Kết quả</h2>
-      <div class="month-pick">
-        <label for="monthTop">Bán ở tháng</label>
-        <input type="range" id="monthTop" min="0" max="12" step="1" value="0" aria-label="Chọn tháng bán">
-        <span class="mval" id="monthTopVal">Tháng 0</span>
-      </div>
-    </div>
-
-    <div class="hero" id="hero"></div>
-    <div class="kpis" id="kpis"></div>
-
-    <div class="charts">
-      <div class="chart-card wide">
-        <h3>ROI theo tháng bán <span class="tip" tabindex="0" data-tip="ROI = lợi nhuận ÷ vốn tự có. Mỗi cột là kết quả nếu bạn bán ở tháng đó. Cột đậm là tháng đang chọn. Bấm vào một cột để chọn tháng đó.">?</span></h3>
-        <p class="cap">Bán càng muộn thì lời càng giảm, vì mỗi tháng phải trả thêm lãi vay. Đường nét đứt là mức lãi nếu gửi ngân hàng.</p>
-        <div class="chart-box"><canvas id="chRoi"></canvas></div>
-      </div>
-      <div class="chart-card">
-        <h3>Tiền đi đâu khi bán? <span class="tip" tabindex="0" data-tip="Biểu đồ “thác nước”: bắt đầu từ giá bán, lần lượt trừ đi từng khoản để ra số tiền cuối cùng bạn nhận về. Cột đỏ là khoản bị trừ.">?</span></h3>
-        <p class="cap" id="capWaterfall">Từ giá bán đến tiền thực nhận (tháng đang chọn)</p>
-        <div class="chart-box"><canvas id="chWater"></canvas></div>
-      </div>
-      <div class="chart-card">
-        <h3>Cơ cấu vốn góp <span class="tip" tabindex="0" data-tip="Số tiền bạn góp vào dự án đến từ đâu: tiền của chính bạn (vốn tự có) và tiền đi vay từ 2 chủ nợ.">?</span></h3>
-        <p class="cap" id="capDonut">Vốn tự có và vốn vay</p>
-        <div class="chart-box"><canvas id="chDonut"></canvas></div>
-      </div>
-      <div class="chart-card">
-        <h3>Lãi vay cộng dồn theo tháng <span class="tip" tabindex="0" data-tip="Tổng tiền lãi đã phát sinh tính từ tháng 0 đến từng tháng (chưa gồm lãi đã phát sinh trước đó). Cam = chủ nợ Dung (trả 1 lần khi bán), Xanh = AGR (trả mỗi tháng).">?</span></h3>
-        <p class="cap">Tách theo 2 chủ nợ (đơn vị: triệu đồng)</p>
-        <div class="chart-box"><canvas id="chInterest"></canvas></div>
-      </div>
-      <div class="chart-card">
-        <h3>Dự án so với gửi ngân hàng <span class="tip" tabindex="0" data-tip="So sánh tỷ lệ lời nếu đầu tư dự án với tỷ lệ lời nếu mang số vốn tự có đi gửi tiết kiệm ngân hàng.">?</span></h3>
-        <p class="cap" id="capCompare">Tỷ lệ lời trên vốn tự có</p>
-        <div class="chart-box"><canvas id="chCompare"></canvas></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== 2. NHẬP LIỆU ========== -->
+  <!-- ========== 1. NHẬP LIỆU ========== -->
   <section class="block" id="secInput">
     <div class="sec-head">
-      <h2><span class="sec-num">2</span> Nhập giả định</h2>
+      <h2><span class="sec-num">1</span> Nhập giả định</h2>
       <button class="btn btn-outline" id="btnReset" type="button">↺ Khôi phục giá trị mặc định</button>
     </div>
     <p class="sec-sub">Nhập số theo đơn vị ghi bên phải ô. Có thể dùng dấu phẩy hoặc dấu chấm cho phần thập phân (ví dụ 7,05 hoặc 7.05).</p>
@@ -279,7 +236,7 @@ footer{color:var(--muted);font-size:12.5px;text-align:center;padding:10px 16px 2
         <legend>🏦 So sánh với gửi ngân hàng</legend>
         <div id="gBank"></div>
         <div class="field">
-          <label for="month">Thời điểm bán <span class="tip" tabindex="0" data-tip="Bạn dự định bán sau bao nhiêu tháng kể từ bây giờ (0 = bán ngay, tối đa 12 tháng). Thanh này đồng bộ với thanh chọn tháng ở phần Kết quả.">?</span></label>
+          <label for="month">Thời điểm bán <span class="tip" tabindex="0" data-tip="Bạn dự định bán sau bao nhiêu tháng kể từ bây giờ (0 = bán ngay, tối đa 12 tháng). Thanh này đồng bộ với thanh chọn tháng ở phần Kết quả bên dưới.">?</span></label>
           <div style="display:flex;align-items:center;gap:12px">
             <input type="range" id="month" min="0" max="12" step="1" value="0">
             <b id="monthVal" style="min-width:70px;text-align:right;color:var(--primary)">Tháng 0</b>
@@ -290,6 +247,49 @@ footer{color:var(--muted);font-size:12.5px;text-align:center;padding:10px 16px 2
 
     <div class="derived" id="derived"></div>
     <div class="alert" id="alertOwn"></div>
+  </section>
+
+  <!-- ========== 2. KẾT QUẢ ========== -->
+  <section class="block" id="secResult">
+    <div class="sec-head">
+      <h2><span class="sec-num">2</span> Kết quả</h2>
+      <div class="month-pick">
+        <label for="monthTop">Bán ở tháng</label>
+        <input type="range" id="monthTop" min="0" max="12" step="1" value="0" aria-label="Chọn tháng bán">
+        <span class="mval" id="monthTopVal">Tháng 0</span>
+      </div>
+    </div>
+
+    <div class="hero" id="hero"></div>
+    <div class="kpis" id="kpis"></div>
+
+    <div class="charts">
+      <div class="chart-card wide">
+        <h3>ROI theo tháng bán <span class="tip" tabindex="0" data-tip="ROI = lợi nhuận ÷ vốn tự có. Mỗi cột là kết quả nếu bạn bán ở tháng đó. Cột đậm là tháng đang chọn. Bấm vào một cột để chọn tháng đó.">?</span></h3>
+        <p class="cap">Bán càng muộn thì lời càng giảm, vì mỗi tháng phải trả thêm lãi vay. Đường nét đứt là mức lãi nếu gửi ngân hàng.</p>
+        <div class="chart-box"><canvas id="chRoi"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <h3>Tiền đi đâu khi bán? <span class="tip" tabindex="0" data-tip="Biểu đồ “thác nước”: bắt đầu từ giá bán, lần lượt trừ đi từng khoản để ra số tiền cuối cùng bạn nhận về. Cột đỏ là khoản bị trừ.">?</span></h3>
+        <p class="cap" id="capWaterfall">Từ giá bán đến tiền thực nhận (tháng đang chọn)</p>
+        <div class="chart-box"><canvas id="chWater"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <h3>Cơ cấu vốn góp <span class="tip" tabindex="0" data-tip="Số tiền bạn góp vào dự án đến từ đâu: tiền của chính bạn (vốn tự có) và tiền đi vay từ 2 chủ nợ.">?</span></h3>
+        <p class="cap" id="capDonut">Vốn tự có và vốn vay</p>
+        <div class="chart-box"><canvas id="chDonut"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <h3>Lãi vay cộng dồn theo tháng <span class="tip" tabindex="0" data-tip="Tổng tiền lãi đã phát sinh tính từ tháng 0 đến từng tháng (chưa gồm lãi đã phát sinh trước đó). Cam = chủ nợ Dung (trả 1 lần khi bán), Xanh = AGR (trả mỗi tháng).">?</span></h3>
+        <p class="cap">Tách theo 2 chủ nợ (đơn vị: triệu đồng)</p>
+        <div class="chart-box"><canvas id="chInterest"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <h3>Dự án so với gửi ngân hàng <span class="tip" tabindex="0" data-tip="So sánh tỷ lệ lời nếu đầu tư dự án với tỷ lệ lời nếu mang số vốn tự có đi gửi tiết kiệm ngân hàng.">?</span></h3>
+        <p class="cap" id="capCompare">Tỷ lệ lời trên vốn tự có</p>
+        <div class="chart-box"><canvas id="chCompare"></canvas></div>
+      </div>
+    </div>
   </section>
 
   <!-- ========== 3. TÍNH TOÁN CHI TIẾT ========== -->
