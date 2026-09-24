@@ -71,7 +71,9 @@ if errorlevel 1 (
 
 rem --- 6. Chi them dung cac file cua cong cu (khong day nham file khac) ---
 echo [3/6] Them file vao commit...
-git add -- "%HTML_FILE%" "%~nx0"
+rem GitHub Pages can file index.html o thu muc goc -> tao ban sao tu file cong cu
+copy /Y "%HTML_FILE%" "index.html" >nul
+git add -- "%HTML_FILE%" "index.html" "%~nx0"
 
 git diff --cached --quiet
 if errorlevel 1 (
@@ -114,6 +116,7 @@ if errorlevel 1 (
 echo.
 echo ============================================================
 echo  XONG! Xem tai: https://github.com/nlcm04/RE-personal
+echo  Trang web: https://nlcm04.github.io/RE-personal/ (1-2 phut sau moi cap nhat)
 echo ============================================================
 echo.
 pause
